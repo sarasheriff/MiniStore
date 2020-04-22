@@ -1,0 +1,12 @@
+<div class="alert alert-warning" *ngIf='!catObj' role="alert">
+  <h5>Loading.....</h5>
+</div>
+<div class="container">
+  <h3>Our Products</h3>
+  <div class="row">
+    <figure *ngFor='let item of uniqRandomProduct' class="col-4">
+      <div><img src={{item.img}} class="img-fluid"></div>
+      <h5 class="t-center">{{item.name}}</h5>
+    </figure>
+  </div>
+</div>

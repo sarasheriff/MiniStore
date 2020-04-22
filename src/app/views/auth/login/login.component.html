@@ -1,0 +1,30 @@
+<form [formGroup]='forms'  (ngSubmit)="onSubmit(input,pass,forms)">
+  <div class="alert alert-primary" role="alert" *ngIf='disable'>
+    Invalid Login password or email incorrect
+  </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input formControlName ='email' #input
+      type="email" 
+      class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      [ngClass]="{'is-invalid':submitted && f.email.errors}">
+      <div *ngIf='submitted && f.email.errors'>
+        <div class='errorDiv' *ngIf='f.email.errors.required'>*Email is required</div>
+        <div class='errorDiv' *ngIf='f.email.errors.pattern'>*doesn't match Email Format abc@domain.com</div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">password</label>
+      <input formControlName ='password' #pass
+      type="password"
+      class="form-control" id="exampleInputPassword1"
+      [ngClass]="{'is-invalid':submitted && f.password.errors}">
+      <div *ngIf='submitted && f.password.errors'>
+        <div class='errorDiv' *ngIf='f.password.errors.required'>*password is required</div>
+        <div class='errorDiv' *ngIf='f.password.errors.pattern'>*the password length at least 5 words including number,special character at least one capital letter</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary"
+    [disabled]='disable'>logIn</button>
+  </form>

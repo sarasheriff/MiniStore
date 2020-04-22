@@ -1,0 +1,45 @@
+<div class="alert alert-warning" *ngIf='!singleCat' role="alert">
+  <h5>Loading.....</h5>
+</div>
+
+<section class="container" *ngIf='product'>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-sm-between">
+
+            <h3 *ngIf='singleCat'>{{singleCat.name | uppercase}}</h3>
+            <a *ngIf='singleCat' class="btn btn-primary t-right mb-2" [routerLink]='["../../add"]'>+</a>
+
+        </div>
+        
+        <div class="card col-4" style="width: 18rem;" *ngFor='let item of specificProductData'>
+
+            <img src={{item.img}} class="card-img-top" class="img-fluid">
+            <div class="card-body">
+                <h5>{{item.name}}</h5>
+                <p class="card-text">{{item.desc}}</p>
+                <!-- edit & delete buttons -->
+                <a class="btn btn-outline-success mr-2"href='#' [routerLink]='["../../edit",item.id]'>Edit</a>
+            <span class="btn btn-outline-danger" href='#' (click)='deleteItem((item.id),modalDelete)'>Delete</span> 
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- modal code -->
+<ng-template #content let-c="close" let-d="dismiss" #modalDelete>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">item deletion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this item?</p>
+      <p>All data with this item will permenantly deleted</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="d('cancle click')">cancel</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('ok click')">Ok</button>
+    </div>
+  </ng-template>

@@ -1,0 +1,40 @@
+
+<section class="container" *ngIf='product'>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-sm-between mb-2">
+      <h2>All Products</h2>
+        <a  class="btn btn-primary t-right" [routerLink]='["../add"]'>+</a>
+  
+    </div>
+       <div class="card col-4 mb-2" style="width: 18rem;" *ngFor='let item of product | async' >
+        <img src={{item.img}} class="card-img-top" class="img-fluid">
+        <div class="card-body">
+            <h5>{{item.name}}</h5>
+          <p class="card-text">{{item.desc}}</p>
+          <h5>{{item.price | currency : 'EGP'}}</h5>
+                     <!-- edit & delete button -->
+          <a class="btn btn-success mr-3"href='#' [routerLink]='["../edit",item.id || id]'>Edit</a>
+          <span class="btn btn-danger" href='#' (click)='deleteItem((item.id),modalDelete)'>Delete</span>
+        </div>
+      </div>  
+    </div>
+   
+</section>
+
+
+<ng-template #content let-c="close" let-d="dismiss" #modalDelete>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">item deletion</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this item?</p>
+    <p>All data with this item will permenantly deleted</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="d('cancle click')">cancel</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('ok click')">Ok</button>
+  </div>
+</ng-template>
