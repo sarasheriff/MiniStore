@@ -1,7 +1,7 @@
 <div class="alert alert-warning" *ngIf='!catObj' role="alert">
   <h5>Loading.....</h5>
 </div>
-<div class="container">
+<div class="container" *ngIf='catObj'>
   <h3>Our Products</h3>
   <div class="row">
     <figure *ngFor='let item of uniqRandomProduct' class="col-4">
