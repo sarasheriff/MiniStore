@@ -16,11 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getForm()
-    console.log(this.f.email.value)
-    this.db.object(`/adminInfo/1`).valueChanges().subscribe(res => {
-      this.admin = res
-      console.log(this.admin)
-    })
+    // console.log(this.f.email.value)
   }
   getForm() {
     this.forms = this.fb.group({
